@@ -1,0 +1,82 @@
+.loginParent {
+    min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+    background: linear-gradient(to right,#4910a3,#2a23d4,#00a9ff);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+    width: 50%;
+    font-size: 3rem;
+    background-color: whitesmoke;
+    /* margin: 10%; */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+.login > .loginH1 {
+    height: 25%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 20px 0px 0px 0px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 75%;
+    min-width: 50%;
+    max-width: 65%;
+}
+.buttonsContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    font-size: 2rem;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"],input[type="Button"] {
+    font-size: 1.5rem;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
