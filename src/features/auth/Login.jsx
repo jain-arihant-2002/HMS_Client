@@ -13,11 +13,12 @@ const Login = () => {
     const [login, { isLoading }] = useLoginMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const Auth = useAuth();
     useEffect(() => {
-        if (useAuth.isPatient) navigate("/patient/add");
-        else if (useAuth.isDoctor) navigate("/patient/view");
-        else if (useAuth.isAdmin) navigate("/doctor/view");
+        console.log(Auth.isDoctor)
+        if (Auth.isPatient) navigate("/patient/add");
+        else if (Auth.isDoctor) navigate("/patient/view");
+        else if (Auth.isAdmin) navigate("/doctor/view");
     }, [useAuth]);
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,10 +52,9 @@ const Login = () => {
         <h1>Loading...</h1>
     ) : (
         <div className="parentContainer">
-            <h1 className="logo">Hospital Mangement System</h1>
             <section className="container">
-                <h2>Login </h2>
                 <form onSubmit={handleSubmit} className="form">
+                <h2>Login </h2>
                     <input
                         placeholder="Username"
                         type="text"

@@ -54,10 +54,9 @@ const Register = () => {
         <h1>Loading...</h1>
     ) : (
         <div className="parentContainer">
-            <h1 className="logo">Hospital Mangement System</h1>
             <section className="container">
-                <h2>Register</h2>
                 <form onSubmit={handleRegister} className="form">
+                <h2>Register</h2>
                     <input
                         placeholder="Username(3-20 characters)"
                         type="text"
