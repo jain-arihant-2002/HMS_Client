@@ -1,9 +1,27 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
+}
+/* logo(hospital management system ) */
+
+.logo {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 20px 20px 30px;
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: whitesmoke;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Navbar Css */
+nav > Link {
+    display: flex;
+}
 /*For Register and Login for now  */
 
 .parentContainer {
@@ -29,10 +47,10 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.container > h1 {
+.container > h2 {
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
 }
 .form {
     display: flex;
@@ -42,11 +60,11 @@
     padding: 20px;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="number"],
+form > input[type="text"],
+form > input[type="password"],
+form > input[type="number"],
 select {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 12px;
     margin: 8px 0;
     display: inline-block;
@@ -54,16 +72,16 @@ select {
     border-radius: 4px;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+form > input[type="number"]::-webkit-inner-spin-button,
+form > input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0;
 }
 
-input[type="submit"],
-input[type="button"] {
+.buttonsContainer > input[type="submit"],
+.buttonsContainer > input[type="button"] {
     font-size: 1.5rem;
     background-color: #4caf50;
     color: #fff;
@@ -76,7 +94,7 @@ input[type="button"] {
     text-overflow: ellipsis;
 }
 
-input[type="submit"]:hover {
+form > input[type="submit"]:hover {
     background-color: #45a049;
 }
 

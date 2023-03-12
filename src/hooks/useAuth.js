@@ -4,18 +4,19 @@ import jwtDecode from "jwt-decode";
 
 const useAuth = () => {
     const token = useSelector(selectCurrentToken);
-
-    let role;
-
+    
     if (token) {
         const decoded = jwtDecode(token);
         const { Role } = decoded.User;
+        let isDoctor = false;
+        let isAdmin = false;
+        let isPatient = false;
+        if (Role === "Patient") isPatient = true;
+        else if (Role === "Doctor") isDoctor = true;
+        else if (Role === "Admin") isAdmin = true;
 
-        if (Role === "Patient") role = "Patient";
-        else if (Role === "Doctor") role = "Doctor";
-        else if (Role === "Admin") role = "Admin";
+        return { isDoctor, isAdmin, isPatient ,Role};
     }
-
-    return role;
+    return { isDoctor: false, isAdmin: false, isPatient: false };
 };
 export default useAuth;

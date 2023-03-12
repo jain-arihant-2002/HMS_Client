@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
 import { useNavigate } from "react-router-dom";
 
+import useAuth from "../../hooks/useAuth";
+
 const Login = () => {
     const [user, setUser] = useState("");
     const [pwd, setPwd] = useState("");
-    const [errMsg, setErrMsg] = useState("");
 
     const [login, { isLoading }] = useLoginMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (useAuth.isPatient) navigate("/patient/add");
+        else if (useAuth.isDoctor) navigate("/patient/view");
+        else if (useAuth.isAdmin) navigate("/doctor/view");
+    }, [useAuth]);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -24,18 +30,17 @@ const Login = () => {
             dispatch(setCredentials({ ...userData, user }));
             setUser("");
             setPwd("");
-            navigate("/Welcome");
-        } catch (err) {
-            console.log(err);
-            if (!err?.originalStatus) {
+            navigate("/patient/add");
+        } catch (error) {
+            console.log(error);
+            if (!error?.status) {
                 // isLoading: true until timeout occurs
-                setErrMsg("No Server Response");
-            } else if (err.originalStatus === 401) {
-                setErrMsg("Unauthorized");
+                return alert("No Server Response");
+            } else if (error.status === 404 || error.status === 401) {
+                return alert(error.data.Title);
             } else {
-                setErrMsg("Login Failed");
+                return alert("Login Failed");
             }
-            alert(errMsg);
         }
     };
 
@@ -46,8 +51,9 @@ const Login = () => {
         <h1>Loading...</h1>
     ) : (
         <div className="parentContainer">
+            <h1 className="logo">Hospital Mangement System</h1>
             <section className="container">
-                <h1>Login</h1>
+                <h2>Login </h2>
                 <form onSubmit={handleSubmit} className="form">
                     <input
                         placeholder="Username"
@@ -69,7 +75,12 @@ const Login = () => {
 
                     <div className="buttonsContainer">
                         <input type="submit" readOnly value="Sign In" />
-                        <input type="Button" readOnly value="Register" onClick={()=>navigate('/register')} />
+                        <input
+                            type="Button"
+                            readOnly
+                            value="Register"
+                            onClick={() => navigate("/register")}
+                        />
                     </div>
                 </form>
             </section>

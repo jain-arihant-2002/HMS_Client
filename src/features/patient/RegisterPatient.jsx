@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRegisterPatientMutation } from "./patientApiSlice";
 const RegisterPatient = () => {
     const [registerPatient, { isLoading }] = useRegisterPatientMutation();
@@ -25,13 +26,45 @@ const RegisterPatient = () => {
         }
     };
 
-    const AddPatient =isLoading ? (
+    const AddPatient = isLoading ? (
         <h1>Loading...</h1>
-    ) : (<>
-    
-    </>)
+    ) : (
+        <>
+            <form action=""></form>
+            <input
+                placeholder="Name"
+                type="text"
+                value={Name}
+                onChange={handleNameInput}
+                required
+            />
 
-    return <div>RegisterPatient</div>;
+            <select
+                value={selectedGender}
+                name="Gender"
+                onChange={(e) => setSelectedGender(e.target.value)}
+            >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input
+                placeholder="Contact Number"
+                type="number"
+                value={Contact}
+                onChange={handleContactInput}
+                required
+            />
+            <input
+                placeholder="Address"
+                type="text"
+                value={Address}
+                onChange={handleAddressInput}
+                required
+            />
+        </>
+    );
+
+    return AddPatient;
 };
 
 export default RegisterPatient;
