@@ -6,6 +6,42 @@
 
 /*For Register and Login for now  */
 
+.parentContainer {
+    min-height: 100vh;
+    min-width: 100%;
+    position: relative;
+    background: linear-gradient(to right, #4910a3, #6528c7, #2a23d4, #00a9ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 40%;
+    max-height: 100%;
+    min-width: 30%;
+    max-width: 100%;
+    font-size: 3rem;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.container > h1 {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    padding: 20px;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="number"],
@@ -18,12 +54,12 @@ select {
     border-radius: 4px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 
 input[type="submit"],

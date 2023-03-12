@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 
 const Login = () => {
     const [user, setUser] = useState("");

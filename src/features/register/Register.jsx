@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "./registerApiSlice";
 /* import { useRegisterPatientMutation } from "../patient/patientApiSlice"; */
 
-import "./Register.css";
-
 const Register = () => {
     const [registerUser, { isLoading }] = useRegisterUserMutation();
     /* const [registerPatient, { isLoading: isLoadingPatient }] =
@@ -38,10 +36,8 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         if (!USER_REGEX.test(Username)) return alert("Please change username");
-        if (!PWD_REGEX.test(confirmPassword))
-            return alert("Please change password");
-        if (!EMAIL_REGEX.test(Email))
-            return alert("Please enter a valid E-Mail");
+        if (!PWD_REGEX.test(confirmPassword)) return alert("Please change password");
+        if (!EMAIL_REGEX.test(Email)) return alert("Please enter a valid E-Mail");
         if (Password !== confirmPassword)
             return alert("Password and Comfirm password didn't matched");
 
@@ -59,7 +55,14 @@ const Register = () => {
             }).unwrap(); */
             navigate("/"); /* change this to welcome page */
         } catch (error) {
-            console.log(error);
+            if (!error?.status) {
+                // isLoading: true until timeout occurs
+                alert("No Server Response");
+            } else if (error.status === 409) {
+                alert(error.data.Title);
+            } else {
+                alert("Login Failed");
+            }
         }
     };
 
@@ -139,12 +142,7 @@ const Register = () => {
                             onClick={() => navigate("/")}
                             readOnly
                         />
-                        <input
-                            type="submit"
-                            value="Register"
-                            disabled={false}
-                            readOnly
-                        />
+                        <input type="submit" value="Register" disabled={false} readOnly />
                     </div>
                 </form>
             </section>
