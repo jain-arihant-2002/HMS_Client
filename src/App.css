@@ -1,5 +1,51 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+}
+
+/*For Register and Login for now  */
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    font-size: 2rem;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+input[type="submit"],
+input[type="button"] {
+    font-size: 1.5rem;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0px 20px 0;
 }

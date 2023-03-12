@@ -2,50 +2,58 @@ import { Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Login from "./features/auth/Login";
+import Register from "./features/register/Register";
 import RequireAuth from "./features/auth/RequireAuth";
-import Welcome from "./components/Welcome";
-import './App.css'
+import "./App.css";
+import RegisterPatient from "./features/patient/RegisterPatient";
 
 function App() {
     return (
-        /* Routes for patient 
-            1)View Appointments
-            2)View Prescription
-            3)View Doctor list(maybe) 
-            4)Add patient data(Get this while registring user on website)*/
-
-        /* Routes for doctor
-            1)View Appointments
-            2)Create Appointment
-            3)Update Appointment
-            4)Delete Appointment
-            5)View Prescription
-            6)Create Prescription
-            7)Update Prescription 
-            8)Delete Prescription
-            9)View Patient
-        */
-        /* Routes for Admin
-            1)View Appointments
-            2)Create Appointment
-            3)Update Appointment
-            4)Delete Appointment
-            5)View Prescription
-            6)Create Prescription
-            7)Update Prescription 
-            8)Delete Prescription
-            9)View Patient
-            10)Add patient 
-            11)Delete Patient
-            12)Update Patient
-        */
         <Routes>
             <Route element={<Layout />}>
                 /* Public Routes */
                 <Route index path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                
                 /* Protected Routes For Patient */
                 <Route element={<RequireAuth allowedRoles={["Patient"]} />}>
-                    <Route path="/welcome" element={<Welcome />} />
+                    <Route path="/appointment/view" element={<ViewAppointment />} />
+                    <Route path="/prescription/view" element={<ViewPrescription />} />
+                    {/*Add here: View doctor List */}
+                    <Route path="/patient/add" element={<RegisterPatient />} />
+                </Route>
+
+                /* Protected Routes For Doctor */
+                <Route element={<RequireAuth allowedRoles={["Doctor"]} />}>
+                    <Route path="/appointment/add" element={<RegisterDoctor />} />
+                    <Route path="/appointment/update" element={<UpdateDoctor />} />
+                    <Route path="/appointment/delete" element={<DeleteDoctor />} />
+                    <Route path="/appointment/view" element={<ViewDoctor />} />
+                    <Route path="/prescription/add" element={<RegisterPrescription />} />
+                    <Route path="/prescription/update" element={<UpdatePrescription />} />
+                    <Route path="/prescription/delete" element={<DeletePrescription />} />
+                    <Route path="/prescription/view" element={<ViewPrescription />} />
+                    <Route path="/patient/view" element={<ViewPatient />} />
+                </Route>
+                
+                /* Protected Routes For Admin */
+                <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+                    <Route path="/patient/add" element={<RegisterPatient />} />
+                    <Route path="/patient/update" element={<UpdatePatient />} />
+                    <Route path="/patient/delete" element={<DeletePatient />} />
+                    <Route path="/patient/view" element={<ViewPatient />} />
+                    <Route path="/doctor/add" element={<RegisterDoctor />} />
+                    <Route path="/doctor/update" element={<UpdateDoctor />} />
+                    <Route path="/doctor/delete" element={<DeleteDoctor />} />
+                    <Route path="/doctor/view" element={<ViewDoctor />} />
+                    <Route path="/prescription/add" element={<RegisterPrescription />} />
+                    <Route path="/prescription/update" element={<UpdatePrescription />} />
+                    <Route path="/prescription/delete" element={<DeletePrescription />} />
+                    <Route path="/prescription/view" element={<ViewPrescription />} />
+                    <Route path="/appointment/add" element={<RegisterAppointment />} />
+                    <Route path="/appointment/update" element={<UpdateAppointment />} />
+                    <Route path="/appointment/delete" element={<DeleteAppointment />} />
+                    <Route path="/appointment/view" element={<ViewAppointment />} />
                 </Route>
             </Route>
         </Routes>

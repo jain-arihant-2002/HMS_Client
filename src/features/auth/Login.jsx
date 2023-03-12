@@ -41,20 +41,18 @@ const Login = () => {
     };
 
     const handleUserInput = (e) => setUser(e.target.value);
-
     const handlePwdInput = (e) => setPwd(e.target.value);
 
     const content = isLoading ? (
         <h1>Loading...</h1>
     ) : (
-        <div className="loginParent">
-            <section className="login">
-                <h1 id="loginH1">Login To HMS</h1>
-                <form onSubmit={handleSubmit} className="loginForm">
+        <div className="parentContainer">
+            <section className="container">
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit} className="form">
                     <input
                         placeholder="Username"
                         type="text"
-                        id="username"
                         value={user}
                         onChange={handleUserInput}
                         autoComplete="off"
@@ -64,7 +62,6 @@ const Login = () => {
                     <input
                         placeholder="Password"
                         type="password"
-                        id="password"
                         value={pwd}
                         onChange={handlePwdInput}
                         autoComplete="off"
@@ -72,8 +69,8 @@ const Login = () => {
                     />
 
                     <div className="buttonsContainer">
-                        <input type="Button"value="Register" />
-                        <input type="submit" value="Sign In" />
+                        <input type="submit" readOnly value="Sign In" />
+                        <input type="Button" readOnly value="Register" onClick={()=>navigate('/register')} />
                     </div>
                 </form>
             </section>
