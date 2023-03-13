@@ -5,7 +5,8 @@ const TableHeader = ({ headers  }) => {
     return(
 <thead>
     {header}
-
+        <td className="updateData">Update</td>
+        <td className="deleteData">delete</td>
 </thead>
     )
 };

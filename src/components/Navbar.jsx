@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-
+import { logOut } from "../features/auth/authSlice";
 const Navbar = () => {
-    const { isDoctor, isAdmin, isPatient } = useAuth();
+    let { isDoctor, isAdmin, isPatient } = useAuth();
 
-    if(isDoctor||isAdmin|| isPatient){
+    if (isDoctor || isAdmin || isPatient) {
         const navbar = (
             <nav>
                 {(isDoctor || isAdmin) && <Link to="/patient/view">View Patients</Link>}
@@ -17,12 +17,22 @@ const Navbar = () => {
                 {(isDoctor || isAdmin) && <Link to="/prescription/add">Add Prescription</Link>}
                 {(isPatient || isDoctor) && <Link to="/appointment/view">View Appointments</Link>}
                 {(isPatient || isAdmin) && <Link to="/appointment/add">Add Appointment</Link>}
+                <Link
+                    to="/"
+                    onClick={() => {
+                        isDoctor = false;
+                        isAdmin = false;
+                        isPatient = false;
+                        logOut();
+                    }}
+                >
+                    LogOut
+                </Link>
             </nav>
         );
-    
+
         return navbar;
     }
-    
 };
 
 export default Navbar;

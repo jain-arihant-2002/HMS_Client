@@ -1,6 +1,7 @@
 import { apiSlice } from "../../app/api/apiSlice";
 
 export const patientApiSlice = apiSlice.injectEndpoints({
+    tagTypes: ["Patient"],
     endpoints: (builder) => ({
         registerPatient: builder.mutation({
             query: (initialPatientData) => ({
@@ -8,13 +9,15 @@ export const patientApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: { ...initialPatientData },
             }),
+            invalidatesTags: ["Patient"],
         }),
         getPatients: builder.query({
             query: () => ({
                 url: "/api/patient",
             }),
+            providesTags: ["Patient"],
         }),
     }),
 });
 
-export const { useRegisterPatientMutation,useGetPatientsQuery } = patientApiSlice;
+export const { useRegisterPatientMutation, useGetPatientsQuery } = patientApiSlice;

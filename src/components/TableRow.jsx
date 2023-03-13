@@ -1,12 +1,15 @@
 import React from "react";
 
-const TableRow = ({ patients, patientArray }) => {
-    console.log(patients);
-    const rows = patients.map((patient, index) => (
-        <tr key={index}>
-            {patientArray.map((key) => (
+const TableRow = ({ patients, patientKeys }) => {
+    const rows = patients.map((patient) => (
+        <tr key={patient.PatientID}>
+            {patientKeys.map((key) => (
                 <td key={key}>{patient[key]}</td>
             ))}
+            {/* edit sign */}
+            <td className="clickAble">&#x270e;</td>
+            {/* Delete sign */}
+            <td className="clickAble">&#x1f5d1;</td>
         </tr>
     ));
 

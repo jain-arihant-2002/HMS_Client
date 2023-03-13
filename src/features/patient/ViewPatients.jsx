@@ -13,14 +13,13 @@ const ViewPatients = () => {
     if (!patients) return (ViewPatient = <h1> No data to show </h1>);
 
     const headerArray = ["PatientID", "Name", "Gender", "Contact", "Address", "Bill"];
-    const patientArray = ["PatientID", "Name", "Gender", "Contact", "Address", "Bill"];
 
     const patientList = patients.patient
     ViewPatient = (
-        <div className="container">
+        <div className="tableContainer">
             <table>
                 {<TableHeader headers={headerArray} />}
-                {<TableRow patients={patientList} patientArray={patientArray} />}
+                {<TableRow patients={patientList} patientKeys={headerArray} />}
             </table>
         </div>
     );
