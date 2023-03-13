@@ -15,8 +15,10 @@ const Navbar = () => {
                 {(isPatient || isAdmin || isDoctor) && (
                     <Link to="/prescription/view">View Prescriptions</Link>
                 )}
-                {(isDoctor || isAdmin) && <Link to="/prescription/add">Add Prescription</Link>}
-                {(isPatient || isDoctor) && <Link to="/appointment/view">View Appointments</Link>}
+                {isDoctor && <Link to="/prescription/add">Add Prescription</Link>}
+                {(isPatient || isDoctor || isAdmin) && (
+                    <Link to="/appointment/view">View Appointments</Link>
+                )}
                 {(isPatient || isAdmin) && <Link to="/appointment/add">Add Appointment</Link>}
                 {(isDoctor || isAdmin || isPatient) && (
                     <Link

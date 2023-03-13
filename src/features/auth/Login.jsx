@@ -17,8 +17,8 @@ const Login = () => {
     useEffect(() => {
         if (Auth.isPatient) navigate("/patient/add");
         else if (Auth.isDoctor) navigate("/patient/view");
-        else if (Auth.isAdmin) navigate("/doctor/view");
-    }, [useAuth]);
+        else if (Auth.isAdmin) navigate("/patient/view");
+    }, [Auth]);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -30,7 +30,6 @@ const Login = () => {
             dispatch(setCredentials({ ...userData, user }));
             setUser("");
             setPwd("");
-            navigate("/patient/add");
         } catch (error) {
             console.log(error);
             if (!error?.status) {
@@ -53,7 +52,7 @@ const Login = () => {
         <div className="parentContainer">
             <section className="container">
                 <form onSubmit={handleSubmit} className="form">
-                <h2>Login </h2>
+                    <h2>Login </h2>
                     <input
                         placeholder="Username"
                         type="text"

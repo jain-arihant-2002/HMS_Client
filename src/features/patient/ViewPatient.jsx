@@ -3,7 +3,7 @@ import TableHeader from "../../components/TableHeader";
 import TableRow from "../../components/TableRow";
 import { useGetPatientsQuery } from "./patientApiSlice";
 
-const ViewPatients = () => {
+const ViewPatient = () => {
     const { data: patients, isLoading } = useGetPatientsQuery();
     console.log(patients);
 
@@ -19,11 +19,11 @@ const ViewPatients = () => {
         <div className="tableContainer">
             <table>
                 {<TableHeader headers={headerArray} />}
-                {<TableRow tableBody={patientList} tableBodyKeys={headerArray} />}
+                {<TableRow tableBody={patientList} tableBodyKeys={headerArray} element='patient' />}
             </table>
         </div>
     );
     return ViewPatient;
 };
 
-export default ViewPatients;
+export default ViewPatient;

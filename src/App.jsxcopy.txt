@@ -4,8 +4,28 @@ import Layout from "./components/Layout";
 import Login from "./features/auth/Login";
 import Register from "./features/register/Register";
 import RequireAuth from "./features/auth/RequireAuth";
-import "./App.css";
+
+import ViewPatient from "./features/patient/ViewPatient";
 import RegisterPatient from "./features/patient/RegisterPatient";
+import UpdatePatient from "./features/patient/UpdatePatient";
+import DeletePatient from "./features/patient/DeletePatient";
+
+import ViewDoctor from "./features/doctor/ViewDoctor";
+import RegisterDoctor from "./features/doctor/RegisterDoctor";
+import UpdateDoctor from "./features/doctor/UpdateDoctor";
+import DeleteDoctor from "./features/doctor/DeleteDoctor";
+
+import ViewAppointment from "./features/appointment/ViewAppointment";
+import RegisterAppointment from "./features/appointment/RegisterAppointment";
+import UpdateAppointment from "./features/appointment/UpdateAppointment";
+import DeleteAppointment from "./features/appointment/DeleteAppointment";
+
+import ViewPrescription from "./features/prescription/ViewPrescription";
+import RegisterPrescription from "./features/prescription/RegisterPrescription";
+import UpdatePrescription from "./features/prescription/UpdatePrescription";
+import DeletePrescription from "./features/prescription/DeletePrescription";
+
+import "./App.css";
 
 function App() {
     return (
@@ -14,16 +34,13 @@ function App() {
                 /* Public Routes */
                 <Route index path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                
                 /* Protected Routes For Patient */
                 <Route element={<RequireAuth allowedRoles={["Patient"]} />}>
                     <Route path="/patient/add" element={<RegisterPatient />} />
-                    {/*Add here: View doctor List */}
                     <Route path="/appointment/view" element={<ViewAppointment />} />
                     <Route path="/prescription/view" element={<ViewPrescription />} />
                     <Route path="/appointment/add" element={<RegisterAppointment />} />
                 </Route>
-
                 /* Protected Routes For Doctor */
                 <Route element={<RequireAuth allowedRoles={["Doctor"]} />}>
                     <Route path="/appointment/view" element={<ViewAppointment />} />
@@ -33,7 +50,6 @@ function App() {
                     <Route path="/prescription/view" element={<ViewPrescription />} />
                     <Route path="/patient/view" element={<ViewPatient />} />
                 </Route>
-                
                 /* Protected Routes For Admin */
                 <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
                     <Route path="/patient/view" element={<ViewPatient />} />
@@ -47,7 +63,6 @@ function App() {
                     <Route path="/prescription/view" element={<ViewPrescription />} />
                     <Route path="/appointment/add" element={<RegisterAppointment />} />
                     <Route path="/appointment/update" element={<UpdateAppointment />} />
-                    <Route path="/prescription/delete" element={<DeletePrescription />} />
                     <Route path="/appointment/view" element={<ViewAppointment />} />
                     <Route path="/appointment/delete" element={<DeleteAppointment />} />
                 </Route>
