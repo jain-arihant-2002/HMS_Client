@@ -1,9 +1,12 @@
-import React from 'react'
+import Hello from "./Hello";
 
 const Heading = () => {
-  return (
-    <h1 className="logo">Hospital Mangement System</h1>
-  )
-}
+    return (
+        <div className="logo">
+            <h1>Hospital Mangement System</h1>
+            <Hello />
+        </div>
+    );
+};
 
-export default Heading
+export default Heading;

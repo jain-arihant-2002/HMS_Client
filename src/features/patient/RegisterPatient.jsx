@@ -12,7 +12,6 @@ const RegisterPatient = () => {
     const [Bill, setBill] = useState("");
 
     const {  isAdmin } = useAuth();
-    console.log(isAdmin);
 
     const handleNameInput = (e) => setName(e.target.value);
     const handleContactInput = (e) => setContact(e.target.value);

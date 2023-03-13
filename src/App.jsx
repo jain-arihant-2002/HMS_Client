@@ -13,10 +13,11 @@ function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
+
                 /* Public Routes */
-                
                 <Route index path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                
                 /* Protected Routes For Patient */
                 <Route element={<RequireAuth allowedRoles={["Patient"]} />}>
                     <Route path="/patient/add" element={<RegisterPatient />} />

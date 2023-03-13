@@ -22,10 +22,12 @@ a {
 
 .logo {
     grid-area: header;
-    white-space: nowrap;
-    display: block;
+    /* white-space: nowrap; */
+    display: flex;
     padding: 20px 20px 20px 30px;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+    justify-content: space-between;
+    align-items: center;
     background-color: #15b05c;
     /* color: whitesmoke; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -68,7 +70,9 @@ nav > a {
     flex-grow: 1;
     width: 50%;
 }
-
+.container > .form >input {
+    width: 90%;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -95,7 +99,7 @@ select {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 90%;
+    width: 100%;
     align-self: center;
 }
 
@@ -160,9 +164,10 @@ form > input[type="submit"]:hover {
     grid-area: content;
     width: 100%;
     text-transform: capitalize;
-    table-layout: fixed;
+    /* table-layout: fixed; */
     border-collapse: collapse;
     text-align: center;
+    overflow-x: auto;
 }
 .tableContainer > table > thead {
     font-weight: bold;
@@ -172,15 +177,11 @@ form > input[type="submit"]:hover {
     font-weight: lighter;
 }
 
-.tableContainer > table > tbody > tr > td {
-    /* padding: 0.5rem; */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2rem;
+.tableContainer > table > thead > tr > td {
+    padding: 10px;
 }
 .tableContainer > table > tbody > tr > td,
-.tableContainer > table > thead > td {
+.tableContainer > table > thead > tr > td {
     border-width: 1px 0px;
     border-color: black;
     border-style: solid;

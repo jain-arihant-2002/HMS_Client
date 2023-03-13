@@ -3,6 +3,12 @@ import { apiSlice } from "../../app/api/apiSlice";
 export const patientApiSlice = apiSlice.injectEndpoints({
     tagTypes: ["Patient"],
     endpoints: (builder) => ({
+        getPatients: builder.query({
+            query: () => ({
+                url: "/api/patient",
+            }),
+            providesTags: ["Patient"],
+        }),
         registerPatient: builder.mutation({
             query: (initialPatientData) => ({
                 url: "/api/patient",
@@ -11,13 +17,28 @@ export const patientApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Patient"],
         }),
-        getPatients: builder.query({
-            query: () => ({
+        updatePatient: builder.mutation({
+            query: (initialData) => ({
                 url: "/api/patient",
+                method: "PATCH",
+                body: { ...initialData },
             }),
-            providesTags: ["Patient"],
+            invalidatesTags: ["Patient"],
+        }),
+        deletePatient: builder.mutation({
+            query: (initialData) => ({
+                url: "/api/patient",
+                method: "DELETE",
+                body: { ...initialData },
+            }),
+            invalidatesTags: ["Patient"],
         }),
     }),
 });
 
-export const { useRegisterPatientMutation, useGetPatientsQuery } = patientApiSlice;
+export const {
+    useGetPatientsQuery,
+    useRegisterPatientMutation,
+    useUpdatePatientMutation,
+    useDeletePatientMutation,
+} = patientApiSlice;

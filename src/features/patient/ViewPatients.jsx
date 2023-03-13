@@ -19,7 +19,7 @@ const ViewPatients = () => {
         <div className="tableContainer">
             <table>
                 {<TableHeader headers={headerArray} />}
-                {<TableRow patients={patientList} patientKeys={headerArray} />}
+                {<TableRow tableBody={patientList} tableBodyKeys={headerArray} />}
             </table>
         </div>
     );
