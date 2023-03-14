@@ -3,7 +3,7 @@ import {selectCurrentUser} from '../features/auth/authSlice'
 const Hello = () => {
     const useName = useSelector(selectCurrentUser)
   return (
-    useName && <span>{`Hello, ${useName}`}</span>
+    useName && <span>{`Hello, ${useName}!`}</span>
   )
 }
 

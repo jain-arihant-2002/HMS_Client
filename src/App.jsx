@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Login from "./features/auth/Login";
@@ -66,6 +66,7 @@ function App() {
                     <Route path="/appointment/view" element={<ViewAppointment />} />
                 </Route>
             </Route>
+            <Route path="*" element={<Navigate to="/" replace />}></Route>
         </Routes>
     );
 }

@@ -1,21 +1,27 @@
 import { useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import { useUpdatePatientMutation } from "./patientApiSlice";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
 
 const UpdatePatient = () => {
+    
     const [updatePatient, { isLoading }] = useUpdatePatientMutation();
+    const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
+
     const location = useLocation();
-    console.log(location.state.body);
-    const { PatientID, Name, Gender, Contact, Address, Bill=0 } = location.state.body;
+    const Navigate = useNavigate();
+    const { PatientID, Name, Gender, Contact, Address, Bill = 0 } = location.state.body;
+
+    if (isLoading || doctorLoading) return <h1>LOADING...</h1>;
+
+    const DoctorArray = Doctors.doctor;
 
     const [updatedName, setUpdatedName] = useState(Name);
     const [updatedselectedGender, setUpdatedSelectedGender] = useState(Gender);
     const [updatedContact, setUpdatedContact] = useState(Contact);
     const [updatedAddress, setUpdatedAddress] = useState(Address);
     const [updatedBill, setUpdatedBill] = useState(Bill);
-
-    const { isAdmin } = useAuth();
+    const [selectedDoctorID, setSelectedDoctorID] = useState(null);
 
     const handleNameInput = (e) => setUpdatedName(e.target.value);
     const handleContactInput = (e) => setUpdatedContact(e.target.value);
@@ -26,27 +32,24 @@ const UpdatePatient = () => {
         e.preventDefault();
         try {
             await updatePatient({
-              PatientID,
-                Name:updatedName,
-                Contact:updatedContact,
+                PatientID,
+                Name: updatedName,
+                Contact: updatedContact,
                 Gender: updatedselectedGender,
-                Address:updatedAddress,
-                Bill:updatedBill
+                Address: updatedAddress,
+                Bill: updatedBill,
+                DoctorID: selectedDoctorID,
             }).unwrap();
             alert("Patient Updated");
 
-            setUpdatedName("");
-            setUpdatedSelectedGender("");
-            setUpdatedContact("");
-            setUpdatedAddress("");
-            setUpdatedBill("");
+            Navigate("/patient/view");
         } catch (error) {
             if (error?.status) alert("No response from server");
             else if (error.status === 409) alert(error.body.Title);
         }
     };
 
-    const AddPatient = isLoading ? (
+    const UpdatePatient = isLoading ? (
         <h1>Loading...</h1>
     ) : (
         <form className="formUpdate" onSubmit={handleUpdatePatient}>
@@ -87,22 +90,38 @@ const UpdatePatient = () => {
                 onChange={handleAddressInput}
                 required
             />
-            {isAdmin && <label htmlFor="Bill">Bill</label>}
-            {isAdmin && (
-                <input
-                    placeholder="Bill"
-                    id="Bill"
-                    type="text"
-                    value={updatedBill}
-                    onChange={handleBillInput}
-                    required
-                />
-            )}
+            <label htmlFor="Bill">Bill</label>
+            <input
+                placeholder="Bill"
+                id="Bill"
+                type="text"
+                value={updatedBill}
+                onChange={handleBillInput}
+                required
+            />
+            {/* Add select doctor */}
+            <label htmlFor="doctorName">Doctor Name</label>
+
+            <select
+                defaultValue={null}
+                name="doctorName"
+                onChange={(e) => {
+                    setSelectedDoctorID(e.target.value);
+                }}
+            >
+                <option value={null}>Select a doctor</option>
+                {DoctorArray.map((doctor) => (
+                    <option key={doctor.DoctorID} value={doctor.DoctorID}>
+                        {doctor.DName}
+                    </option>
+                ))}
+            </select>
+
             <input type="submit" readOnly value="Update Patient" />
         </form>
     );
 
-    return AddPatient;
+    return UpdatePatient;
 };
 
 export default UpdatePatient;

@@ -1,9 +1,47 @@
-import React from 'react'
+import TableHeader from "../../components/TableHeader";
+import TableRow from "../../components/TableRow";
+import { useGetDoctorsQuery } from "./doctorApiSlice";
+import useAuth from "../../hooks/useAuth";
 
 const ViewDoctor = () => {
-  return (
-    <div>ViewDoctor</div>
-  )
-}
+    const { data: doctors, isLoading } = useGetDoctorsQuery();
+    const { isAdmin } = useAuth();
 
-export default ViewDoctor
+    const headerArray = ["DoctorID", "DName", "Contact", "Department", "Fees"];
+
+    if (isLoading)
+        return (
+            <div className="tableContainer">
+                <h1>Loading...</h1>
+            </div>
+        );
+
+    const doctorList = doctors.doctor;
+
+    if (doctorList.length <= 0 || !doctorList)
+        return (
+            <div className="tableContainer">
+                <h1>No Data To Show</h1>
+            </div>
+        );
+
+    const doctorData = (
+        <div className="tableContainer">
+            <table>
+                {<TableHeader headers={headerArray} renderBoolean={isAdmin} />}
+                {
+                    <TableRow
+                        tableBody={doctorList}
+                        tableBodyKeys={headerArray}
+                        element="doctor"
+                        renderBoolean={isAdmin}
+                    />
+                }
+            </table>
+        </div>
+    );
+
+    return doctorData;
+};
+
+export default ViewDoctor;
