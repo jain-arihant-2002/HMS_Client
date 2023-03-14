@@ -1,22 +1,30 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useRegisterPatientMutation } from "./patientApiSlice";
+import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
 
 const RegisterPatient = () => {
     const [registerPatient, { isLoading }] = useRegisterPatientMutation();
+    const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
 
     const [Name, setName] = useState("");
     const [selectedGender, setSelectedGender] = useState("male");
     const [Contact, setContact] = useState("");
     const [Address, setAddress] = useState("");
     const [Bill, setBill] = useState("");
+    const [selectedDoctorID, setSelectedDoctorID] = useState(null);
 
-    const {  isAdmin } = useAuth();
+    const { isAdmin } = useAuth();
+    let DoctorArray;
 
     const handleNameInput = (e) => setName(e.target.value);
     const handleContactInput = (e) => setContact(e.target.value);
     const handleAddressInput = (e) => setAddress(e.target.value);
     const handleBillInput = (e) => setBill(e.target.value);
+
+    if (isLoading || doctorLoading) return <h1>LOADING...</h1>;
+
+    if (isAdmin) DoctorArray = Doctors.doctor;
 
     const handleAddPatient = async (e) => {
         e.preventDefault();
@@ -26,15 +34,15 @@ const RegisterPatient = () => {
                 Contact,
                 Gender: selectedGender,
                 Address,
+                DoctorID: selectedDoctorID,
             }).unwrap();
-            alert("New Patient Added")
-            
-            setName("")
-            setSelectedGender("")
-            setContact("")
-            setAddress("")
-            setBill("")
+            alert("New Patient Added");
 
+            setName("");
+            setSelectedGender("");
+            setContact("");
+            setAddress("");
+            setBill("");
         } catch (error) {
             if (error?.status) alert("No response from server");
             else if (error.status === 409) alert(error.body.Title);
@@ -92,6 +100,23 @@ const RegisterPatient = () => {
                     onChange={handleBillInput}
                     required
                 />
+            )}
+            {isAdmin && <label htmlFor="doctorName">Doctor Name</label>}
+            {isAdmin && (
+                <select
+                    defaultValue={null}
+                    name="doctorName"
+                    onChange={(e) => {
+                        setSelectedDoctorID(e.target.value);
+                    }}
+                >
+                    <option value={null}>Select a doctor</option>
+                    {DoctorArray.map((doctor) => (
+                        <option key={doctor.DoctorID} value={doctor.DoctorID}>
+                            {doctor.DName}
+                        </option>
+                    ))}
+                </select>
             )}
             <input type="submit" readOnly value="Add Patient" />
         </form>

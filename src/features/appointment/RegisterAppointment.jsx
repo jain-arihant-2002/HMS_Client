@@ -1,9 +1,14 @@
-import React from 'react'
-
+import useAuth from "../../hooks/useAuth";
+import { useCreateAppointmentMutation } from "./appointmentApiSlice";
 const RegisterAppointment = () => {
-  return (
-    <div>RegisterAppointment</div>
-  )
-}
+    const [createAppointment, { isLoading }] = useCreateAppointmentMutation();
 
-export default RegisterAppointment
+    const { isPatient, isAdmin } = useAuth();
+
+    const handleAddAppointment = async () => {
+        await createAppointment({ Date, Time, DoctorID, PatientID });
+    };
+    return <div>RegisterAppointment</div>;
+};
+
+export default RegisterAppointment;

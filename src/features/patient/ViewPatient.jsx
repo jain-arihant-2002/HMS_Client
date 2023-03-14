@@ -8,7 +8,6 @@ const ViewPatient = () => {
     const { isAdmin } = useAuth();
     const headerArray = ["PatientID", "Name", "Gender", "Contact", "Address", "Bill"];
 
-    console.log(patients)
     if (isLoading)
        return <div className="tableContainer">
             <h1>Loading...</h1>

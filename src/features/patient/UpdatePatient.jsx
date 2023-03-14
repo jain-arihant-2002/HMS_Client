@@ -1,20 +1,17 @@
 import { useState } from "react";
-import { useUpdatePatientMutation } from "./patientApiSlice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useUpdatePatientMutation } from "./patientApiSlice";
 import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
 
 const UpdatePatient = () => {
-    
-    const [updatePatient, { isLoading }] = useUpdatePatientMutation();
-    const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
 
     const location = useLocation();
     const Navigate = useNavigate();
+    
+    const [updatePatient, { isLoading }] = useUpdatePatientMutation();
+    const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
     const { PatientID, Name, Gender, Contact, Address, Bill = 0 } = location.state.body;
 
-    if (isLoading || doctorLoading) return <h1>LOADING...</h1>;
-
-    const DoctorArray = Doctors.doctor;
 
     const [updatedName, setUpdatedName] = useState(Name);
     const [updatedselectedGender, setUpdatedSelectedGender] = useState(Gender);
@@ -22,6 +19,8 @@ const UpdatePatient = () => {
     const [updatedAddress, setUpdatedAddress] = useState(Address);
     const [updatedBill, setUpdatedBill] = useState(Bill);
     const [selectedDoctorID, setSelectedDoctorID] = useState(null);
+    if (isLoading || doctorLoading) return <h1>LOADING...</h1>;
+    const DoctorArray = Doctors.doctor;
 
     const handleNameInput = (e) => setUpdatedName(e.target.value);
     const handleContactInput = (e) => setUpdatedContact(e.target.value);
@@ -41,7 +40,6 @@ const UpdatePatient = () => {
                 DoctorID: selectedDoctorID,
             }).unwrap();
             alert("Patient Updated");
-
             Navigate("/patient/view");
         } catch (error) {
             if (error?.status) alert("No response from server");
@@ -101,7 +99,6 @@ const UpdatePatient = () => {
             />
             {/* Add select doctor */}
             <label htmlFor="doctorName">Doctor Name</label>
-
             <select
                 defaultValue={null}
                 name="doctorName"
