@@ -9,16 +9,20 @@ const ViewPatient = () => {
     const headerArray = ["PatientID", "Name", "Gender", "Contact", "Address", "Bill"];
 
     if (isLoading)
-       return <div className="tableContainer">
-            <h1>Loading...</h1>
-        </div>;
+        return (
+            <div className="tableContainer">
+                <h1>Loading...</h1>
+            </div>
+        );
 
     const patientList = patients.patient;
 
     if (patientList.length <= 0 || !patientList)
-    return <div className="tableContainer">
-            <h1> No data to show </h1>
-        </div>;
+        return (
+            <div className="tableContainer">
+                <h1> No data to show </h1>
+            </div>
+        );
 
     const ViewPatient = (
         <div className="tableContainer">
@@ -35,7 +39,7 @@ const ViewPatient = () => {
             </table>
         </div>
     );
-    return ViewPatient
+    return ViewPatient;
 };
 
 export default ViewPatient;

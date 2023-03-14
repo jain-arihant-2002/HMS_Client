@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useRegisterPatientMutation } from "./patientApiSlice";
 import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
+import SelectDropdown from "../../components/SelectDropdown";
 
 const RegisterPatient = () => {
     const [registerPatient, { isLoading }] = useRegisterPatientMutation();
@@ -103,20 +104,14 @@ const RegisterPatient = () => {
             )}
             {isAdmin && <label htmlFor="doctorName">Doctor Name</label>}
             {isAdmin && (
-                <select
-                    defaultValue={null}
-                    name="doctorName"
-                    onChange={(e) => {
-                        setSelectedDoctorID(e.target.value);
-                    }}
-                >
-                    <option value={null}>Select a doctor</option>
-                    {DoctorArray.map((doctor) => (
-                        <option key={doctor.DoctorID} value={doctor.DoctorID}>
-                            {doctor.DName}
-                        </option>
-                    ))}
-                </select>
+                 <SelectDropdown
+                 name="doctorName"
+                 array={DoctorArray}
+                 optionHeading="Select a doctor"
+                 keyName="DoctorID"
+                 optionValue="DName"
+                 setState={setSelectedDoctorID}
+             />
             )}
             <input type="submit" readOnly value="Add Patient" />
         </form>

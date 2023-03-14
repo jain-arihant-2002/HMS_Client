@@ -2,16 +2,15 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUpdatePatientMutation } from "./patientApiSlice";
 import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
+import SelectDropdown from "../../components/SelectDropdown";
 
 const UpdatePatient = () => {
-
     const location = useLocation();
     const Navigate = useNavigate();
-    
+
     const [updatePatient, { isLoading }] = useUpdatePatientMutation();
     const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
     const { PatientID, Name, Gender, Contact, Address, Bill = 0 } = location.state.body;
-
 
     const [updatedName, setUpdatedName] = useState(Name);
     const [updatedselectedGender, setUpdatedSelectedGender] = useState(Gender);
@@ -99,20 +98,14 @@ const UpdatePatient = () => {
             />
             {/* Add select doctor */}
             <label htmlFor="doctorName">Doctor Name</label>
-            <select
-                defaultValue={null}
+            <SelectDropdown
                 name="doctorName"
-                onChange={(e) => {
-                    setSelectedDoctorID(e.target.value);
-                }}
-            >
-                <option value={null}>Select a doctor</option>
-                {DoctorArray.map((doctor) => (
-                    <option key={doctor.DoctorID} value={doctor.DoctorID}>
-                        {doctor.DName}
-                    </option>
-                ))}
-            </select>
+                array={DoctorArray}
+                optionHeading="Select a doctor"
+                keyName="DoctorID"
+                optionValue="DName"
+                setState={setSelectedDoctorID}
+            />
 
             <input type="submit" readOnly value="Update Patient" />
         </form>
