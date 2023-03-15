@@ -41,16 +41,19 @@ const RegisterAppointment = () => {
 
             if (!TIME_REGEX.test(time)) return alert(`Problem with entered Time`);
             if (isPatient) setSelectedPatientID(PatientArray[0].PatientID);
-            setSelectedDoctorID(null);
-            setSelectedPatientID(null);
-            setDate("");
-            setTime("");
+
             await createAppointment({
                 Date: date,
                 Time: time,
                 DoctorID: selectedDoctorID,
                 PatientID: selectedPatientID,
             }).unwrap();
+
+            setSelectedDoctorID(null);
+            setSelectedPatientID(null);
+            setDate("");
+            setTime("");
+            
             alert(`appointment added`);
         } catch (error) {
             if (error?.status) alert("No response from server");
@@ -69,6 +72,7 @@ const RegisterAppointment = () => {
                     keyName="PatientID"
                     optionValue="Name"
                     setState={setSelectedPatientID}
+                    defaultVal={null}
                 />
             )}
             {isPatient && <label htmlFor="patient">Selected Patient</label>}
@@ -89,6 +93,7 @@ const RegisterAppointment = () => {
                 keyName="DoctorID"
                 optionValue="DName"
                 setState={setSelectedDoctorID}
+                defaultVal={null}
             />
 
             <label htmlFor="Date">Date</label>

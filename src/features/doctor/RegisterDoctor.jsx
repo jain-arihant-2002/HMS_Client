@@ -105,7 +105,7 @@ const RegisterDoctor = () => {
             <input
                 placeholder="Fees"
                 id="fees"
-                type="text"
+                type="number"
                 value={fees}
                 onChange={handleFeeInput}
                 required

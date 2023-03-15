@@ -1,0 +1,11 @@
+To do remaining elements :
+1) Update for appointment
+2) Delete for appointment
+3) View for Prescription
+4) Update for Prescription
+5) Delete for Prescription
+6) Addfor Prescription
+
+Server.js
+
+Edit logic for add users and roles.

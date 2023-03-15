@@ -1,7 +1,7 @@
-const SelectDropdown = ({ name, array, optionHeading, optionValue, keyName, setState }) => {
+const SelectDropdown = ({ name, array, optionHeading, optionValue, keyName, setState,defaultVal }) => {
     return (
         <select
-            defaultValue={null}
+            defaultValue={defaultVal}
             name={name}
             onChange={(e) => {
                 setState(e.target.value);

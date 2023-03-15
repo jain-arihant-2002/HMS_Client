@@ -105,6 +105,7 @@ const UpdatePatient = () => {
                 keyName="DoctorID"
                 optionValue="DName"
                 setState={setSelectedDoctorID}
+                defaultVal={null}
             />
 
             <input type="submit" readOnly value="Update Patient" />
