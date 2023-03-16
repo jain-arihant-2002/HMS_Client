@@ -14,7 +14,7 @@ console.log(location.state.body)
     const handleDeleteDoctor = async (e) => {
         e.preventDefault();
         try {
-            await deleteDoctor({ DoctorID, DName, Contact, Department, Fees }).unwrap();
+            await deleteDoctor({ DoctorID}).unwrap();
             alert("Doctor Deleted");
             navigate("/doctor/view");
         } catch (error) {

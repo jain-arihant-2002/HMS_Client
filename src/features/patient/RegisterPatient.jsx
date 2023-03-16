@@ -5,11 +5,12 @@ import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
 import SelectDropdown from "../../components/SelectDropdown";
 
 const RegisterPatient = () => {
+    /* Make this private to admin and render this register element also which will  */
     const [registerPatient, { isLoading }] = useRegisterPatientMutation();
     const { data: Doctors, isLoading: doctorLoading } = useGetDoctorsQuery();
 
     const [Name, setName] = useState("");
-    const [selectedGender, setSelectedGender] = useState("male");
+    const [selectedGender, setSelectedGender] = useState("Male");
     const [Contact, setContact] = useState("");
     const [Address, setAddress] = useState("");
     const [Bill, setBill] = useState("");
@@ -40,7 +41,7 @@ const RegisterPatient = () => {
             alert("New Patient Added");
 
             setName("");
-            setSelectedGender("");
+            setSelectedGender("Male");
             setContact("");
             setAddress("");
             setBill("");

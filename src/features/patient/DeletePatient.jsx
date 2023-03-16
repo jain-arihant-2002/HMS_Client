@@ -12,7 +12,7 @@ const DeletePatient = () => {
     const handleDeletePatient = async (e) => {
         e.preventDefault();
         try {
-            await deletePatient({ PatientID, Name, Contact, Gender, Address, Bill }).unwrap();
+            await deletePatient({ PatientID }).unwrap();
             alert("Patient Deleted");
             navigate("/patient/view");
         } catch (error) {

@@ -12,7 +12,7 @@ const ViewDoctor = () => {
     if (isLoading)
         return (
             <div className="tableContainer">
-                <h1>Loading...</h1>
+                <h2>Loading...</h2>
             </div>
         );
 
@@ -21,7 +21,7 @@ const ViewDoctor = () => {
     if (doctorList.length <= 0 || !doctorList)
         return (
             <div className="tableContainer">
-                <h1>No Data To Show</h1>
+                <h2>No Data To Show</h2>
             </div>
         );
 
