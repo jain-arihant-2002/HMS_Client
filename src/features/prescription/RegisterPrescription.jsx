@@ -23,24 +23,21 @@ const RegisterPrescription = () => {
 
     const handleAddPrescription = async (e) => {
         e.preventDefault();
-        if(selectedPatientID===null) return alert("Please select a patient")
+        if (selectedPatientID === null) return alert("Please select a patient");
         try {
-          await createPrescription({
-            Disease: disease,
-            Allergy: allergy,
-            Medicine: medicine,
-            PatientID: selectedPatientID,
-        });
-        alert("Prescription Created");
-        Navigate('/prescription/view')
-        } catch (error) {
-          
-        }
-        
-        
+            await createPrescription({
+                Disease: disease,
+                Allergy: allergy,
+                Medicine: medicine,
+                PatientID: selectedPatientID,
+            });
+            alert("Prescription Created");
+            Navigate("/prescription/view");
+        } catch (error) {}
     };
     const AddPrescription = (
         <form className="formAdd" onSubmit={handleAddPrescription}>
+            <h2>Add Prescription</h2>
             <label htmlFor="patientList">Select Patient</label>
 
             <SelectDropdown

@@ -63,6 +63,7 @@ const RegisterAppointment = () => {
 
     const AddAppointment = (
         <form className="formAdd" onSubmit={handleAddAppointment}>
+            <h2>Add Appointment</h2>
             {isAdmin && <label htmlFor="patientList">Select Patient</label>}
             {isAdmin && (
                 <SelectDropdown

@@ -30,6 +30,7 @@ const DeletePrescription = () => {
 
     const DeletePrescription = (
         <form className="formAdd" onSubmit={handleDeletePrescription}>
+            <h2>Delete Prescription</h2>
             <label htmlFor="patientList">Selected Patient</label>
             <input id="patientList" type="text" value={Doctor.DName} readOnly />
 

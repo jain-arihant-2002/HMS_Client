@@ -30,6 +30,7 @@ const DeleteAppointment = () => {
 
     const DeleteAppointment = (
         <form className="formAdd" onSubmit={handleDeleteAppointment}>
+            <h2>Delete Appointment</h2>
             <label htmlFor="patientList">Selected Patient</label>
             <input id="patientList" type="text" value={Doctor.DName} readOnly />
 

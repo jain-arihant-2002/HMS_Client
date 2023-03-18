@@ -40,6 +40,7 @@ const UpdateDoctor = () => {
         <h1>Loading...</h1>
     ) : (
         <form className="formUpdate" onSubmit={handleUpdateDoctor}>
+            <h2>Update Doctor</h2>
             <label htmlFor="DName">DName</label>
             <input
                 placeholder="DName"

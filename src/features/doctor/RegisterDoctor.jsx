@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateDoctorMutation } from "./doctorApiSlice";
 
 const RegisterDoctor = () => {
-
-  const Navigate =useNavigate();
+    const Navigate = useNavigate();
 
     const [createDoctor, { isLoading }] = useCreateDoctorMutation();
     const [username, setUsername] = useState("");
@@ -35,9 +34,8 @@ const RegisterDoctor = () => {
                 Department: department,
                 Fees: fees,
             }).unwrap();
-            alert('Doctor added')
-            Navigate('/doctor/view');
-            
+            alert("Doctor added");
+            Navigate("/doctor/view");
         } catch (error) {
             if (error?.status) alert("No response from server");
             else if (error.status === 409) alert(error.body.Title);
@@ -47,7 +45,8 @@ const RegisterDoctor = () => {
         <h1>Loading...</h1>
     ) : (
         <form className="formAdd" onSubmit={handleAddDoctor}>
-          <label htmlFor="Username">Username</label>
+            <h2>Add Doctor</h2>
+            <label htmlFor="Username">Username</label>
             <input
                 placeholder="Username"
                 id="Username"
@@ -55,7 +54,8 @@ const RegisterDoctor = () => {
                 value={username}
                 onChange={handleUsernameInput}
                 required
-            /><label htmlFor="Password">Password</label>
+            />
+            <label htmlFor="Password">Password</label>
             <input
                 placeholder="Password"
                 id="Password"
@@ -63,7 +63,8 @@ const RegisterDoctor = () => {
                 value={password}
                 onChange={handlePasswordInput}
                 required
-            /><label htmlFor="Email">Email</label>
+            />
+            <label htmlFor="Email">Email</label>
             <input
                 placeholder="Email"
                 id="Email"

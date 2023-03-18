@@ -7,7 +7,7 @@ const useAuth = () => {
     
     if (token) {
         const decoded = jwtDecode(token);
-        const { Role } = decoded.User;
+        const {UserID, Role } = decoded.User;
         let isPatient = false;
         let isDoctor = false;
         let isAdmin = false;
@@ -15,8 +15,8 @@ const useAuth = () => {
         else if (Role === "Doctor") isDoctor = true;
         else if (Role === "Admin") isAdmin = true;
 
-        return { isDoctor, isAdmin, isPatient ,Role};
+        return { isDoctor, isAdmin, isPatient ,Role,UserID};
     }
-    return { isDoctor: false, isAdmin: false, isPatient: false };
+    return { isDoctor: false, isAdmin: false, isPatient: false,UserID:null };
 };
 export default useAuth;

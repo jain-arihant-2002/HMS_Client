@@ -28,6 +28,7 @@ console.log(location.state.body)
         <h1>Loading...</h1>
     ) : (
         <form className="formUpdate" onSubmit={handleDeleteDoctor}>
+            <h2>Delete Doctor</h2>
             <label htmlFor="DoctorID">DoctorID</label>
             <input
                 placeholder="DoctorID"

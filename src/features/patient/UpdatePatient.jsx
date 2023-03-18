@@ -50,7 +50,7 @@ const UpdatePatient = () => {
         <h1>Loading...</h1>
     ) : (
         <form className="formUpdate" onSubmit={handleUpdatePatient}>
-            <label htmlFor="Name">Name</label>
+            <h2>Update Patient</h2><label htmlFor="Name">Name</label>
             <input
                 placeholder="Name"
                 id="Name"

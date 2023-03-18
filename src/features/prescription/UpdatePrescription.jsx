@@ -33,7 +33,7 @@ const UpdatePrescription = () => {
         try {
             if (updatedSelectedPatientID === null) return alert("Please select patient");
 
-           await updatePrescription({
+            await updatePrescription({
                 PrescriptionID,
                 Disease: updatedDisease,
                 Allergy: updatedAllergy,
@@ -52,6 +52,7 @@ const UpdatePrescription = () => {
 
     const UpdatePrescription = (
         <form className="formAdd" onSubmit={handleDeletePrescription}>
+            <h2>Update Prescription</h2>
             <label htmlFor="patientList">Select Patient</label>
 
             <SelectDropdown

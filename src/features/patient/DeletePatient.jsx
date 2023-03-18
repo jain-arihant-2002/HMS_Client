@@ -26,6 +26,7 @@ const DeletePatient = () => {
         <h1>Loading...</h1>
     ) : (
         <form className="formUpdate" onSubmit={handleDeletePatient}>
+            <h2>Delete Patient</h2>
             <label htmlFor="PatientID">PatientID</label>
             <input
                 placeholder="PatientID"

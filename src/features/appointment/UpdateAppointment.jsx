@@ -61,6 +61,7 @@ const UpdateAppointment = () => {
 
     const UpdateAppointment = (
         <form className="formAdd" onSubmit={handleUpdateAppointment}>
+            <h2>Update Appointment</h2>
             <label htmlFor="patientList">Select Patient</label>
             <SelectDropdown
                 name="patientList"
