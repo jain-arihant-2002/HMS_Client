@@ -9,8 +9,8 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set("authorization", `Bearer ${token}`);
         }
-        console.log("I am front end getstate auth ",getState().auth)
-        console.log("I am front end ",token)
+       // console.log("I am front end getstate auth ",getState().auth)
+       // console.log("I am front end ",token)
         return headers;
     },
 });
