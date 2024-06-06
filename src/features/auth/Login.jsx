@@ -15,7 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
     const Auth = useAuth();
     useEffect(() => {
-        if (Auth.isPatient) navigate("/patient/add");
+        if (Auth.isPatient) navigate("/prescription/view");
         else if (Auth.isDoctor) navigate("/patient/view");
         else if (Auth.isAdmin) navigate("/patient/view");
     }, [Auth]);
