@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
+
+const Navigate = useNavigate();
 
 const authSlice = createSlice({
     name: "auth",
@@ -12,6 +15,8 @@ const authSlice = createSlice({
         logOut: (state, action) => {
             state.user = null;
             state.token = null;
+            Navigate("/");
+
         },
     },
 });
