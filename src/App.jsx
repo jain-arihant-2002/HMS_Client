@@ -42,6 +42,7 @@ function App() {
                 </Route>
                 /* Admin Routes */
                 <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+                    <Route path="/patient/add" element={<RegisterPatient />} />
                     <Route path="/patient/update" element={<UpdatePatient />} />
                     <Route path="/patient/delete" element={<DeletePatient />} />
                     <Route path="/doctor/view" element={<ViewDoctor />} />
@@ -54,7 +55,6 @@ function App() {
                 /*Patient and Admin Routes */
                 <Route element={<RequireAuth allowedRoles={["Patient", "Admin"]} />}>
                     <Route path="/appointment/add" element={<RegisterAppointment />} />
-                    <Route path="/patient/add" element={<RegisterPatient />} />
                 </Route>
                 /*Doctor and Admin Routes */
                 <Route element={<RequireAuth allowedRoles={["Doctor", "Admin"]} />}>
