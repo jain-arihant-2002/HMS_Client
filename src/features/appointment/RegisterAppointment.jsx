@@ -32,13 +32,16 @@ const RegisterAppointment = () => {
     const DATE_REGEX = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     const TIME_REGEX = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 
-    useEffect(() => {
-        try{
-             if (isPatient) setSelectedPatientID(PatientArray[0].PatientID);
+useEffect(() => {
+    try {
+        if (isPatient && PatientArray && PatientArray.length > 0) {
+            setSelectedPatientID(PatientArray[0].PatientID);
         }
-        catch(e){}
+    } catch (e) {
+        console.error("Error setting patient ID:", e);
     }
-}, [PatientArray]);
+}, [isPatient, PatientArray]);
+
 
     
     const handleAddAppointment = async (e) => {
