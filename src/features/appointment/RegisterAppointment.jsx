@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCreateAppointmentMutation } from "./appointmentApiSlice";
 import { useGetDoctorsQuery } from "../doctor/doctorApiSlice";
 import { useGetPatientsQuery } from "../patient/patientApiSlice";
@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import SelectDropdown from "../../components/SelectDropdown";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useSelector } from "react-redux";
+
 
 const RegisterAppointment = () => {
     const [createAppointment, { isLoading }] = useCreateAppointmentMutation();
@@ -31,10 +32,19 @@ const RegisterAppointment = () => {
     const DATE_REGEX = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     const TIME_REGEX = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 
+    useEffect(() => {
+        try{
+             if (isPatient) setSelectedPatientID(PatientArray[0].PatientID);
+        }
+        catch(e){}
+    }
+}, [PatientArray]);
+
+    
     const handleAddAppointment = async (e) => {
         e.preventDefault();
         try {
-            if (isPatient) setSelectedPatientID(PatientArray[0].PatientID);
+           // if (isPatient) setSelectedPatientID(PatientArray[0].PatientID);
             if (selectedDoctorID === null || selectedPatientID === null)
                 return alert("Please select patient and doctor");
             if (!DATE_REGEX.test(date)) return alert(`Problem with entered Date`);
